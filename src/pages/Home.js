@@ -139,7 +139,7 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-        <Link to="/allplants">View All</Link>
+        
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
@@ -235,10 +235,16 @@ const Home = (props) => {
         </section>
       </header>
 
-      <span className="welcome-user">
-        {(user ? (<span>Welcome <Link to="/user">{user.displayName}!</Link></span>) :
-          "Welcome!")}
-      </span>
+      <div className="welcome-user-container">
+
+        <span className="welcome-user">
+          {(user ? (<span>Welcome <Link to="/user">{user.displayName}!</Link></span>) :
+            "Welcome!")}
+        </span>
+
+        
+
+      </div>
 
       {/* Plant Suggestions */}
 
@@ -250,7 +256,7 @@ const Home = (props) => {
         </>
       ) : props.userId ? (
         <>
-        <div>USER'S ZONE {userZone}</div>
+          <div>USER'S ZONE {userZone}</div>
           <PlantSuggestions userId={props.userId} zone={userZone} />
           {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
         </>
@@ -263,6 +269,7 @@ const Home = (props) => {
       )}
 
     </div>
+
 
   )
 }
