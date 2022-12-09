@@ -344,7 +344,7 @@ h3.auth-header {
 }
 
 .search-results-location {
-	grid-column-start: 3;
+	display: none;
 }
 
 /* HOME HEADER */
@@ -528,8 +528,16 @@ div.journal {
 }
 
 .individual-plant-suggestion {
-	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 70%;
 	margin: 1em;
+	padding: 1em;
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-color: #72c17b16;
 }
 
 .italics {
