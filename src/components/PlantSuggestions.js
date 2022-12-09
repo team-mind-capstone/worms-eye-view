@@ -4,6 +4,7 @@
 import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
+import { Link } from "react-router-dom"
 
 
 // ! TODO, integrate getting actual user zone number
@@ -373,6 +374,7 @@ const PlantSuggestions = (props) => {
 
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
+      <Link to="/allplants">View All Plants</Link>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
           <div className="individual-plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>

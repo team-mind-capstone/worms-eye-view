@@ -511,7 +511,7 @@ div.journal {
 	width: 80%;
 	margin: 3em auto;
 	/* margin-bottom: 5em; */
-	/* padding: 5vw 0vw; */
+	padding: 2em;
 	gap: 1em;
 	border: 2px solid grey;
 	border-radius: 10px;

@@ -13,7 +13,7 @@ import Favorites from "./Favorites"
 export default function AppRoutes() {
 
   const [user, setUser] = useState(null)
-  
+
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -26,12 +26,13 @@ export default function AppRoutes() {
       <Routes>
         {user ? (
           <>
-            <Route path="/allplants" element={<AllPlantsView userId={user.uid} />} />
-            <Route path="/allplants/:plantId" element={<SinglePlantView userId={user.uid} />} />
+           
             <Route path="/" element={<App userId={user.uid} user={user} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
             <Route path="/favorites" element={<Favorites userId={user.uid} />} />
             <Route path="/user" element={<User />} />
+            <Route path="/allplants" element={<AllPlantsView userId={user.uid} />} />
+            <Route path="/allplants/:plantId" element={<SinglePlantView userId={user.uid} />} />
           </>
         ) : (
           <>
