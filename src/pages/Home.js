@@ -111,19 +111,19 @@ const Home = (props) => {
     <div
       style={
         info.condition?.toLowerCase() === "clear"
-          ? { backgroundImage: background.clear }
+          ? { backgroundImage: background.clear, backgroundSize: "cover" }
           : info.condition?.toLowerCase() === "sunny"
-            ? { backgroundImage: background.sunny }
+            ? { backgroundImage: background.sunny, backgroundSize: "cover"  }
             : info.condition?.toLowerCase().includes("cloudy")
-              ? { backgroundImage: background.cloudy }
+              ? { backgroundImage: background.cloudy, backgroundSize: "cover"  }
               : info.condition?.toLowerCase().includes("rain") ||
                 info.condition?.toLowerCase().includes("drizzle")
-                ? { backgroundImage: background.rainy }
+                ? { backgroundImage: background.rainy, backgroundSize: "cover"  }
                 : info.condition?.toLowerCase().includes("snow") ||
                   info.condition?.toLowerCase().includes("sleet")
-                  ? { backgroundImage: background.snow }
+                  ? { backgroundImage: background.snow, backgroundSize: "cover"  }
                   : info.condition?.toLowerCase().includes("overcast")
-                    ? { backgroundImage: background.overcast }
+                    ? { backgroundImage: background.overcast, backgroundSize: "cover"  }
                     : { backgroundImage: grad }
       }
       className="home-view-container">
