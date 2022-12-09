@@ -128,18 +128,19 @@ const Home = (props) => {
       }
       className="home-view-container">
 
+
+      <ThemeContext.Consumer>
+        {({ changeTheme }) => (
+          <ToggleDark
+            toggleDark={() => {
+              setDarkMode(!darkMode)
+              changeTheme(darkMode ? themes.light : themes.dark)
+            }}
+          />
+        )}
+      </ThemeContext.Consumer>
+
       <header className="top-home-page-row">
-        <ThemeContext.Consumer>
-          {({ changeTheme }) => (
-            <ToggleDark
-              toggleDark={() => {
-                setDarkMode(!darkMode)
-                changeTheme(darkMode ? themes.light : themes.dark)
-              }}
-            />
-          )}
-        </ThemeContext.Consumer>
-        
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
@@ -160,6 +161,7 @@ const Home = (props) => {
             onChange={handleSearch}
             function={handleSearch}
           /> */}
+
           <section className="search-container">
             <article className="search-input-container">
               <input
@@ -171,7 +173,7 @@ const Home = (props) => {
                 onChange={handleSearch}
                 onFocus={(e) => (e.target.placeholder = "")}
                 onBlur={(e) => (e.target.placeholder = "please enter location")}
-                onKeyPress={handleKeyPress}
+                onKeyUp={handleKeyPress}
               />
             </article>
 
@@ -242,7 +244,7 @@ const Home = (props) => {
             "Welcome!")}
         </span>
 
-        
+
 
       </div>
 
