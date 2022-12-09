@@ -732,142 +732,6 @@ input[type="checkbox"] {
 	color: black;
 }
 
-/* RESPONSIVE */
-
-@media screen and (max-width: 768px) {
-	.plant-suggestions-container {
-		width: 90%;
-	}
-	.plant-suggestions-header {
-		font-size: 1.5em;
-	}
-	.plant-suggestions-subheading {
-		font-size: 1em;
-	}
-	.individual-plant-suggestion {
-		margin: 1em;
-	}
-	.plantSugImg {
-		width: 40vw;
-		height: 40vw;
-	}
-	.allPlantsImg {
-		height: 20vh;
-	}
-	.singlePlant {
-		width: 40vw;
-		margin: 1vw;
-	}
-
-
-	.single-plant-container {
-		width: 90%;
-		height: 100%;
-		border: 1px solid blue;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	
-
-	.allPlantsArea {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		flex-direction: row;
-	}
-	.filterArea {
-		width: 90%;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		border: 1px solid grey;
-		padding: 1em;
-	}
-	.filteringCon {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-	}
-	.checkbox-container {
-		border: 1px solid grey;
-		width: 100%;
-		gap: 1em;
-		display: flex;
-	}
-	.checkbox-container:hover {
-		background-color: #9b51e00f;
-	}
-	.singlePlantName {
-		font-size: 1.5rem;
-	}
-	.plant-suggestions-container {
-		width: 90%;
-	}
-	.plant-suggestions-header {
-		font-size: 1.5em;
-	}
-	.plant-suggestions-subheading {
-		font-size: 1em;
-	}
-	.individual-plant-suggestion {
-		margin: 1em;
-	}
-	.plantSugImg {
-		width: 40vw;
-		height: 40vw;
-	}
-	.allPlantsImg {
-		height: 20vh;
-	}
-	.singlePlant {
-
-		width: 80vw;
-		margin: 1vw;
-	}
-	
-	.allPlantsArea {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		flex-direction: row;
-	}
-	.filterArea {
-		width: 90%;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		border: 1px solid grey;
-		padding: 1em;
-	}
-	.filteringCon {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-	}
-
-	.checkbox-container {
-		border: 1px solid grey;
-		width: 100%;
-		gap: 1em;
-		display: flex;
-		margin: .3em;
-	}
-
-	.checkbox-container:hover {
-		background-color: #9b51e00f;
-	}
-
-	.singlePlantName {
-		font-size: 1.5rem;
-	}
-
-}
-
-
 
 /* FAVORITES */
 
@@ -906,4 +770,55 @@ input[type="checkbox"] {
 
 .fav-yes {
     background: url("./img/like.svg") no-repeat;
+}
+
+/* There will be 3 breakpoints at 800px, 400px, and 300px for repsonsive styling */
+
+@media screen and (max-width: 800px) {
+	.plant-suggestions-container {
+		width: 90%;
+	}
+	.plant-suggestions-header {
+		font-size: 1.5em;
+	}
+	.plant-suggestions-subheading {
+		font-size: 1em;
+	}
+	.individual-plant-suggestion {
+		width: 90%;
+	}
+	.plantSugImg {
+		width: 40vw;
+		height: 40vw;
+	}
+	.all-plants-container {
+		width: 90%;
+	}
+	.allPlantsArea {
+		flex-direction: column;
+	}
+	.singlePlant {
+		width: 90vw;
+	}
+	.filterArea {
+		width: 90%;
+	}
+	.filteringCon {
+		flex-direction: column;
+	}
+	.checkbox-container {
+		flex-direction: column;
+	}
+	.footer-container {
+		width: 100%;
+	}
+	.footer-list {
+		flex-direction: column;
+	}
+	.footer-link {
+		font-size: 1em;
+	}
+	.favorites-container {
+		width: 90%;
+	}
 }
