@@ -14,6 +14,7 @@
 	padding: 0;
 	font-family: 'Manrope', sans-serif;
 	font-feature-settings: 'ss01' 1, 'ss03' 1;
+	background-size: cover;
 }
 
 body::-webkit-scrollbar {
@@ -350,7 +351,7 @@ h3.auth-header {
 /* HOME HEADER */
 
 .home-view-container {
-	background-size: contain
+	background-size: cover;
 }
 
 .home-header {

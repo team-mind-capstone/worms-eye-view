@@ -33,6 +33,10 @@ export default function AppRoutes() {
             <Route path="/user" element={<User />} />
             <Route path="/allplants" element={<AllPlantsView userId={user.uid} />} />
             <Route path="/allplants/:plantId" element={<SinglePlantView userId={user.uid} />} />
+            <Route path="/signUp" element={<Auth />} />
+            <Route path="/signIn" element={<Auth />} />
+            <Route path="/allplants/:plantId" element={<SinglePlantView />} />
+
           </>
         ) : (
           <>
