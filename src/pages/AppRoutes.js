@@ -1,17 +1,25 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import App from './App'
-import AllPlantsView from './allPlants/AllPlantsView'
-import SinglePlantView from './SinglePlantView'
-import Journal from './Journal'
-import Favorites from './Favorites'
-import User from './User'
-import Auth from '../components/Auth'
-
-
+import { onAuthStateChanged } from "firebase/auth"
+import React, { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import App from "./App"
+import { auth } from "../database/firebase-config"
+import Journal from "./Journal"
+import AllPlantsView from "./allPlants/AllPlantsView"
+import SinglePlantView from "./SinglePlantView"
+import Auth from "../components/Auth"
+import User from "./User"
+import Favorites from "./Favorites"
 
 export default function AppRoutes() {
-  // existing code here
+
+  const [user, setUser] = useState(null)
+  
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+    })
+  }, [])
 
   return (
     <>
