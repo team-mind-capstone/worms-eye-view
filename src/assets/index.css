@@ -865,8 +865,6 @@ input[type="checkbox"] {
 	justify-content: center;
 	align-items: center;
 	margin: 20px;
-	width: 60%;
-	height: 40%;
 	gap: 1em;
 	border: 2px solid grey;
 	border-radius: 10px;
@@ -876,6 +874,14 @@ input[type="checkbox"] {
  
 .plant-list-favorites {
 	border: 1px black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.plant-card-header {
+	width: 90%;
 }
 
 .fav-no {
