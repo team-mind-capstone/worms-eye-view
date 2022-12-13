@@ -687,18 +687,14 @@ div.journal {
   color: whitesmoke;
 }
 
-.dark-mode-content ::placeholder {
-  color: whitesmoke;
+.dark-mode-content input, .dark-mode-content ::placeholder {
+  color: #272727;
 }
 
 .dark-mode-screen .dark-mode-content {
   background-color: #5e5e5e;
   height: 100%;
   width: 100%;
-}
-
-.dark-mode-content input::placeholder {
-  color: #272727;
 }
 
 .zone7-content {
