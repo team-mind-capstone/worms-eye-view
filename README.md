@@ -42,6 +42,11 @@ Garden Plot Visualization
 
 ![User Profile](./readmeAssets/profile.jpg "User Profile")
 
+<img src="./readmeAssets/home_plant_sug.jpg " alt="drawing" width="200"/>
+<img src="./public/journal.jpg " alt="drawing" width="200"/>
+<img src="./public/all_filter.jpg " alt="drawing" width="200"/>
+<img src="./readmeAssets/fav.jpg" alt="drawing" width="200"/>
+<img src="./readmeAssets/plot_viz.jpg " alt="drawing" width="200"/>
 <img src="./readmeAssets/profile.jpg " alt="drawing" width="200"/>
 
 ## Project Details
