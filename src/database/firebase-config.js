@@ -3,9 +3,10 @@ import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import REACT_APP_AUTH_KEY from "../.env.local"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAIJjJthpmTBHfPElnfbClql6f1Owt7Zfg",
+  apiKey: REACT_APP_AUTH_KEY,
   authDomain: "wormseye-d1c52.firebaseapp.com",
   databaseURL: "https://wormseye-d1c52-default-rtdb.firebaseio.com",
   projectId: "wormseye-d1c52",
@@ -14,6 +15,8 @@ const firebaseConfig = {
   appId: "1:1068806595819:web:cc8a3e73242c32d3094aae",
   measurementId: "G-HCEFKHCFP0",
 };
+
+
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
