@@ -25,23 +25,6 @@ An Emard, Grace Gao, Kenny Johnson, Kevin Lam
 
 ## Rendered Pages
 
-Home view & Plant suggestions
-![Home view & Plant suggestions](./readmeAssets/home_plant_sug.jpg "Home view & Plant suggestions")
-
-Journaling Tool
-![Journaling Tool](./public/journal.jpg "Journaling Tool")
-
-View and filter all plants
-![View and filter all plants](./public/all_filter.jpg "View and filter all plants")
-
-Favorites Selection
-![Favorites Selection](./readmeAssets/fav.jpg "Favorites Selection")
-
-Garden Plot Visualization
-![Garden Plot Visualization](./readmeAssets/plot_viz.jpg"Garden Plot Visualization")
-
-![User Profile](./readmeAssets/profile.jpg "User Profile")
-
 <img src="./readmeAssets/home_plant_sug.jpg " alt="Home view & Plant suggestions" width="500"/>
 <img src="./readmeAssets/journal.jpg " alt="Journaling Tool" width="500"/>
 <img src="./readmeAssets/all_filter.jpg " alt="View and filter all plants" width="500"/>
