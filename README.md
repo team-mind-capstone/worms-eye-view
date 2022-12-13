@@ -40,7 +40,6 @@ Favorites Selection
 Garden Plot Visualization
 ![Garden Plot Visualization](./readmeAssets/plot_viz.jpg"Garden Plot Visualization")
 
-User Profile
 ![User Profile](./readmeAssets/profile.jpg "User Profile")
 
 ## Project Details
