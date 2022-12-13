@@ -2,10 +2,14 @@ import { useState, useEffect } from "react"
 import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { auth, db } from "../database/firebase-config"
 import { storage } from "../database/firebase-config"
+import background, { gradient } from "../components/background"
+
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { onAuthStateChanged } from "firebase/auth"
 // import { Link, useParams } from "react-router-dom"
 // import Popup from 'reactjs-popup'
+import logo from "../assets/logos/worm-logo-3.png"
+
 
 const Journal = (props) => {
   const [worms, setWorms] = useState([])
@@ -139,8 +143,10 @@ const Journal = (props) => {
   let defaultDate = newDate.toISOString()
 
   return (
-
-    <div className="journal-container">
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+    <div className="page-container"  >
+   
+    <div className="journal-container" >
       <h1>Plant Journal</h1>
       {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
       <div className="journal-form">
@@ -195,8 +201,9 @@ const Journal = (props) => {
             ) : "No entries"
           }
         </div>
+        </div>
       </div>
-
+      </div>
     </div>
   )
 }
