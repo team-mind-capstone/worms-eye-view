@@ -108,6 +108,10 @@ html {
   width: 100%;
 }
 
+::placeholder {
+  color: #272727;
+}
+
 /* NAV */
 
 .nav-bar-container {
@@ -691,6 +695,10 @@ div.journal {
   background-color: #5e5e5e;
   height: 100%;
   width: 100%;
+}
+
+.dark-mode-content input::placeholder {
+  color: #272727;
 }
 
 .zone7-content {
