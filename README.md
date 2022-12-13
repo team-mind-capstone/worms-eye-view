@@ -42,6 +42,8 @@ Garden Plot Visualization
 
 ![User Profile](./readmeAssets/profile.jpg "User Profile")
 
+<img src="./readmeAssets/profile.jpg " alt="drawing" width="200"/>
+
 ## Project Details
 
 ### Main Technology Stack
