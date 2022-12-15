@@ -3,6 +3,7 @@
 This is a gardening companion app to assist gardeners. Based on a user's location, the app will suggest suitable plants to grow for their location and time of year. Additionally, the user can browse the entire database of 500 plants, save favorite plants, journal the progress of their plants and plan their garden with a garden plot visualizer tool.
 
 ## Team members
+
 <table>
   <tbody>
     <tr>
@@ -13,7 +14,6 @@ This is a gardening companion app to assist gardeners. Based on a user's locatio
     </tr>
   </tbody>
 </table>
-
 
 ## Quick Start Guide
 
@@ -57,4 +57,4 @@ This is a gardening companion app to assist gardeners. Based on a user's locatio
 - Font Awesome, Tailwind
 - React-router
 
-### Project video presentation [link](https://www.youtube.com/watch?v=R8R3M7B4NZ8&list=PLx0iOsdUOUmmSWuD08FQvGO9KW5fw6Z9z&index=20)
+### Project presentation video [link](https://www.youtube.com/watch?v=R8R3M7B4NZ8&list=PLx0iOsdUOUmmSWuD08FQvGO9KW5fw6Z9z&index=20)
