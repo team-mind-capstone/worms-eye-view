@@ -47,4 +47,4 @@ An Emard, Grace Gao, Kenny Johnson, Kevin Lam
 - Font Awesome, Tailwind
 - React-router
 
-### Project presentation [link](https://www.youtube.com/watch?v=R8R3M7B4NZ8&list=PLx0iOsdUOUmmSWuD08FQvGO9KW5fw6Z9z&index=20)
+### Project video presentation [link](https://www.youtube.com/watch?v=R8R3M7B4NZ8&list=PLx0iOsdUOUmmSWuD08FQvGO9KW5fw6Z9z&index=20)
