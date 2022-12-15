@@ -1,68 +1,71 @@
-import { useState, useEffect } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { useState, useEffect } from "react"
+import { addDoc, collection } from "firebase/firestore"
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-} from "firebase/auth";
-import { auth, db } from "../database/firebase-config";
-import { useNavigate } from "react-router-dom";
-import background from "../components/background";
+} from "firebase/auth"
+import { auth, db } from "../database/firebase-config"
+import { useNavigate } from "react-router-dom"
+import background from "../components/background"
 
 const Auth = () => {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerZipcode, setRegisterZipcode] = useState("");
-  const [zone, setZone] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerDisplayName, setRegisterDisplayName] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
-  const wormCollection = collection(db, "worms");
-  const navigate = useNavigate();
+  console.log("====================auth.js====================")
+  const [registerEmail, setRegisterEmail] = useState("")
+  const [registerZipcode, setRegisterZipcode] = useState("")
+  const [zone, setZone] = useState("")
+  const [registerPassword, setRegisterPassword] = useState("")
+  const [registerDisplayName, setRegisterDisplayName] = useState("")
+  const [loginEmail, setLoginEmail] = useState("")
+  const [loginPassword, setLoginPassword] = useState("")
+  const [currentUser, setCurrentUser] = useState("")
+  const wormCollection = collection(db, "worms")
+  const navigate = useNavigate()
+
+  console.log("auth current uder", currentUser)
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setCurrentUser(currentUser);
-    });
-  }, []);
+      setCurrentUser(currentUser)
+    })
+  }, [])
   const register = async () => {
     try {
       let result = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
-      );
-      let datas = await fetchZone(registerZipcode);
+      )
+      let datas = await fetchZone(registerZipcode)
       {
-        datas ? setZone(datas) : setZone("");
+        datas ? setZone(datas) : setZone("")
       }
       const wormCollection = collection(
         db,
         "worms",
         result.user.uid,
         "personal"
-      );
+      )
       addDoc(wormCollection, {
         zipcode: registerZipcode,
         zone: datas.zone,
         coordinates: datas.coordinates,
-      });
+      })
 
-      navigate("/");
+      navigate("/")
       return updateProfile(result.user, {
         displayName: registerDisplayName,
         photoURL:
           "https://img.freepik.com/premium-vector/cute-little-worm-cartoon-character_188253-3950.jpg?w=2000",
       }).catch(function (error) {
-        console.log(error);
-      });
+        console.log(error)
+      })
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
-  };
+  }
 
   const login = async () => {
     try {
@@ -70,22 +73,24 @@ const Auth = () => {
         auth,
         loginEmail,
         loginPassword
-      );
-      navigate("/");
+      )
+      navigate("/")
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
-  };
+  }
 
   const logout = async () => {
-    await signOut(auth);
-    navigate("/");
-  };
+    await signOut(auth)
+    navigate("/")
+  }
   const fetchZone = async (search) => {
-    const response = await fetch(`https://phzmapi.org/${search}.json`);
-    const data = await response.json();
-    return data;
-  };
+    const response = await fetch(`https://phzmapi.org/${search}.json`)
+    const data = await response.json()
+    return data
+  }
+
+  console.log("current user", currentUser)
 
   return (
     <div
@@ -115,7 +120,7 @@ const Auth = () => {
               placeholder="Email..."
               value={registerEmail}
               onChange={(event) => {
-                setRegisterEmail(event.target.value);
+                setRegisterEmail(event.target.value)
               }}
             />
             <input
@@ -124,7 +129,7 @@ const Auth = () => {
               placeholder="Password..."
               value={registerPassword}
               onChange={(event) => {
-                setRegisterPassword(event.target.value);
+                setRegisterPassword(event.target.value)
               }}
             />
             <input
@@ -133,7 +138,7 @@ const Auth = () => {
               placeholder="Zipcode..."
               value={registerZipcode}
               onChange={(event) => {
-                setRegisterZipcode(event.target.value);
+                setRegisterZipcode(event.target.value)
               }}
             />
             <input
@@ -143,7 +148,7 @@ const Auth = () => {
               placeholder="Display Name..."
               value={registerDisplayName}
               onChange={(event) => {
-                setRegisterDisplayName(event.target.value);
+                setRegisterDisplayName(event.target.value)
               }}
             />
             {/* <input className="email-password-input" id="phoneNumber"type="text" placeholder="Phone Number..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} /> */}
@@ -163,7 +168,7 @@ const Auth = () => {
               placeholder="Email..."
               value={loginEmail}
               onChange={(event) => {
-                setLoginEmail(event.target.value);
+                setLoginEmail(event.target.value)
               }}
             />
             <input
@@ -172,7 +177,7 @@ const Auth = () => {
               type="text"
               value={loginPassword}
               onChange={(event) => {
-                setLoginPassword(event.target.value);
+                setLoginPassword(event.target.value)
               }}
             />
             <button onClick={login}>Login</button>
@@ -180,7 +185,7 @@ const Auth = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth

@@ -1,32 +1,32 @@
-import { useState, useEffect } from "react";
-import background, { gradient } from "../components/background";
-import { shuffle } from "lodash";
-import PlantSuggestions from "../components/PlantSuggestions";
-import ToggleDark from "../components/toggleDark";
-import { ThemeContext, themes } from "../components/themeContext";
-import { db } from "../database/firebase-config";
-import { Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import logo from "../assets/logos/worm-logo-3.png";
+import { useState, useEffect } from "react"
+import background, { gradient } from "../components/background"
+import { shuffle } from "lodash"
+import PlantSuggestions from "../components/PlantSuggestions"
+import ToggleDark from "../components/toggleDark"
+import { ThemeContext, themes } from "../components/themeContext"
+import { db } from "../database/firebase-config"
+import { Link } from "react-router-dom"
+import { collection, getDocs } from "firebase/firestore"
+import logo from "../assets/logos/worm-logo-3.png"
 
 const Home = (props) => {
-  const [search, setSearch] = useState("");
-  const [info, setInfo] = useState({});
-  const [grad, setgrad] = useState(null);
-  const [zone, setZone] = useState("");
-  const [zip, setZip] = useState("");
-  const [user, setUser] = useState(props.user);
-  const [userZone, setuserZone] = useState("");
-  const [darkMode, setDarkMode] = useState(true);
+  const [search, setSearch] = useState("")
+  const [info, setInfo] = useState({})
+  const [grad, setgrad] = useState(null)
+  const [zone, setZone] = useState("")
+  const [zip, setZip] = useState("")
+  const [user, setUser] = useState(props.user)
+  const [userZone, setuserZone] = useState("")
+  const [darkMode, setDarkMode] = useState(true)
 
   useEffect(() => {
     async function getDatas() {
-      const wormCollection = collection(db, "worms", user.uid, "personal");
-      let newData = await getDocs(wormCollection);
-      setuserZone(newData.docs[0].data().zone);
+      const wormCollection = collection(db, "worms", user.uid, "personal")
+      let newData = await getDocs(wormCollection)
+      setuserZone(newData.docs[0].data().zone)
     }
-    getDatas();
-  }, []);
+    getDatas()
+  }, [])
 
   async function getData() {
     await fetch(
@@ -44,45 +44,45 @@ const Home = (props) => {
             min: d.forecast.forecastday[0].day.mintemp_f,
           },
         })
-      );
+      )
   }
   // ZONE API
 
   const fetchZone = async (search) => {
-    const response = await fetch(`https://phzmapi.org/${search}.json`);
-    const data = await response.json();
-    return data;
-  };
+    const response = await fetch(`https://phzmapi.org/${search}.json`)
+    const data = await response.json()
+    return data
+  }
 
   useEffect(() => {
     async function getZone() {
-      let zoneResults = await fetchZone(search);
+      let zoneResults = await fetchZone(search)
       {
-        zoneResults ? setZone(zoneResults) : setZone("");
+        zoneResults ? setZone(zoneResults) : setZone("")
       }
     }
-    getZone();
-  }, [search]);
+    getZone()
+  }, [search])
 
   // SEARCH
 
   function handleKeyPress(e) {
-    if (e.key === "Enter") getData();
+    if (e.key === "Enter") getData()
   }
 
   function handleSearch(e) {
-    setSearch(e.target.value);
-    setZip(e.target.value);
-    getData();
+    setSearch(e.target.value)
+    setZip(e.target.value)
+    getData()
   }
 
   useEffect(() => {
-    getData();
-  }, [zip]);
+    getData()
+  }, [zip])
 
   useEffect(() => {
-    setgrad(shuffle(gradient).pop());
-  }, []);
+    setgrad(shuffle(gradient).pop())
+  }, [])
 
   return (
     // Dynamic Background
@@ -111,8 +111,8 @@ const Home = (props) => {
           {({ changeTheme }) => (
             <ToggleDark
               toggleDark={() => {
-                setDarkMode(!darkMode);
-                changeTheme(darkMode ? themes.light : themes.dark);
+                setDarkMode(!darkMode)
+                changeTheme(darkMode ? themes.light : themes.dark)
               }}
             />
           )}
@@ -133,7 +133,7 @@ const Home = (props) => {
 
         <span className="home-user-account-icon">
           <Link to="/user">
-            <i class="fa fa-regular fa-user"> </i>
+            <i className="fa fa-regular fa-user"> </i>
           </Link>
         </span>
       </header>
@@ -190,7 +190,7 @@ const Home = (props) => {
                     °
                   </span>{" "}
                   <div className="search-results-temp-range-icon">
-                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    <i className="fa fa-arrow-down" aria-hidden="true"></i>
                   </div>
                   {info.temp?.min}
                   <span className="search-results-temp-range-degrees">°</span>
@@ -224,7 +224,7 @@ const Home = (props) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

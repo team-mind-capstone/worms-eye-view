@@ -1,24 +1,24 @@
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import App from "./App";
-import { auth } from "../database/firebase-config";
-import Journal from "./Journal";
-import AllPlantsView from "./allPlants/AllPlantsView";
-import SinglePlantView from "./SinglePlantView";
-import Auth from "../components/Auth";
-import User from "./User";
-import Favorites from "./Favorites";
-import GardenPlotViz from "./GardenPlotViz";
+import { onAuthStateChanged } from "firebase/auth"
+import React, { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import App from "./App"
+import { auth } from "../database/firebase-config"
+import Journal from "./Journal"
+import AllPlantsView from "./allPlants/AllPlantsView"
+import SinglePlantView from "./SinglePlantView"
+import Auth from "../components/Auth"
+import User from "./User"
+import Favorites from "./Favorites"
+import GardenPlotViz from "./GardenPlotViz"
 
 const AppRoutes = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("")
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-  }, []);
+      setUser(currentUser)
+    })
+  }, [])
 
   return (
     <>
@@ -53,7 +53,7 @@ const AppRoutes = () => {
         )}
       </Routes>
     </>
-  );
-};
+  )
+}
 
-export default AppRoutes;
+export default AppRoutes
