@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom"
 import background from "../components/background"
 
 const Auth = () => {
-  console.log("====================auth.js====================")
   const [registerEmail, setRegisterEmail] = useState("")
   const [registerZipcode, setRegisterZipcode] = useState("")
   const [zone, setZone] = useState("")
@@ -23,8 +22,6 @@ const Auth = () => {
   const [currentUser, setCurrentUser] = useState("")
   const wormCollection = collection(db, "worms")
   const navigate = useNavigate()
-
-  console.log("auth current uder", currentUser)
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -89,8 +86,6 @@ const Auth = () => {
     const data = await response.json()
     return data
   }
-
-  console.log("current user", currentUser)
 
   return (
     <div
