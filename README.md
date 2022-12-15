@@ -2,8 +2,18 @@
 
 This is a gardening companion app to assist gardeners. Based on a user's location, the app will suggest suitable plants to grow for their location and time of year. Additionally, the user can browse the entire database of 500 plants, save favorite plants, journal the progress of their plants and plan their garden with a garden plot visualizer tool.
 
-Team members:
-An Emard, Grace Gao, Kenny Johnson, Kevin Lam
+## Team members
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/anemard"><img src="https://avatars.githubusercontent.com/u/108692275?v=4" width="100px;" alt="anemard"/><br /><sub><b>An Emard</b></sub></a><br /><a href="https://github.com/team-mind-capstone/worms-eye-view/commits?author=anemard" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/grace5829"><img src="https://avatars.githubusercontent.com/u/109704911?v=4" width="100px;" alt="Grace Gao"/><br /><sub><b>Grace Gao</b></sub></a><br /><a href="https://github.com/team-mind-capstone/worms-eye-view/commits?author=grace5829" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/papercircuit"><img src="https://avatars.githubusercontent.com/u/105308787?v=4" width="100px;" alt="Kenny Johnson"/><br /><sub><b>Kenny Johnson</b></sub></a><br /><a href="https://github.com/team-mind-capstone/worms-eye-view/commits?author=papercircuit" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/kevin-lambda"><img src="https://avatars.githubusercontent.com/u/91186183?v=4" width="100px;" alt="Kevin Lam"/><br /><sub><b>Kevin Lam</b></sub></a><br /> <a href="https://github.com/team-mind-capstone/worms-eye-view/commits?author=kevin-lambda" title="Code">💻</a> </td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Quick Start Guide
 
