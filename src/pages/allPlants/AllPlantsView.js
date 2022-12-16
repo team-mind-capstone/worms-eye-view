@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import {
   collection,
   getDocs,
@@ -6,33 +6,38 @@ import {
   orderBy,
   limit,
   startAfter,
-} from "firebase/firestore";
-import { db } from "../../database/firebase-config";
-import { Link } from "react-router-dom";
-import Checkbox from "./checkboxes";
-import AddFavorite from "../../components/AddFavorite";
-import DeleteFavorite from "../../components/DeleteFavorite";
-import background from "../../components/background";
+} from "firebase/firestore"
+import { db } from "../../database/firebase-config"
+import { Link } from "react-router-dom"
+import Checkbox from "./checkboxes"
+import AddFavorite from "../../components/AddFavorite"
+import DeleteFavorite from "../../components/DeleteFavorite"
+import background from "../../components/background"
 
 const AllPlants = (props) => {
-  const [plants, setPlants] = useState([]);
-  const [plantsBackUp, setPlantsBackUp] = useState([]);
-  const [filterTypeOptions, setfilterTypeOptions] = useState([]);
-  const [filterLifeOptions, setfilterLifeOptions] = useState([]);
-  const [filterLightOptions, setfilterLightOptions] = useState([]);
-  const [userFavorites, setUserFavorites] = useState([]);
-  const [docsLast, setDocsLast] = useState(0);
-  const { userId } = props;
+  const [plants, setPlants] = useState([])
+  const [plantsBackUp, setPlantsBackUp] = useState([])
+  const [filterTypeOptions, setfilterTypeOptions] = useState([])
+  const [filterLifeOptions, setfilterLifeOptions] = useState([])
+  const [filterLightOptions, setfilterLightOptions] = useState([])
+  const [userFavorites, setUserFavorites] = useState([])
+  const [docsLast, setDocsLast] = useState(0)
+  const { userId } = props
 
-  const plantCollection = collection(db, "testPlants");
-  const userFavoritesCollection = collection(db, "worms", userId, "favorites");
-  const q = query(plantCollection, orderBy("flowerId", "asc"), limit(12));
+  let userFavoritesCollection = {}
+
+  if (userId) {
+    userFavoritesCollection = collection(db, "worms", userId, "favorites")
+  }
+
+  const plantCollection = collection(db, "testPlants")
+  const q = query(plantCollection, orderBy("flowerId", "asc"), limit(12))
 
   async function getFavorites() {
-    const data = await getDocs(userFavoritesCollection);
+    const data = await getDocs(userFavoritesCollection)
     await setUserFavorites(
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    );
+    )
   }
 
   const fetchMore = async () => {
@@ -41,56 +46,56 @@ const AllPlants = (props) => {
       orderBy("flowerId", "asc"),
       limit(12),
       startAfter(docsLast)
-    );
-    const data = await getDocs(q);
-    const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    await setPlants((plants) => [...plants, ...plantData]);
-    await setPlantsBackUp((plants) => [...plants, ...plantData]);
-    const docsLength = data.docs.length - 1;
-    const lastPlantId = plantData[docsLength].flowerId;
-    setDocsLast(lastPlantId);
-  };
+    )
+    const data = await getDocs(q)
+    const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    await setPlants((plants) => [...plants, ...plantData])
+    await setPlantsBackUp((plants) => [...plants, ...plantData])
+    const docsLength = data.docs.length - 1
+    const lastPlantId = plantData[docsLength].flowerId
+    setDocsLast(lastPlantId)
+  }
 
   useEffect(() => {
     async function getPlants() {
-      const data = await getDocs(q);
-      const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      await setPlants(plantData);
-      await setPlantsBackUp(plantData);
-      const docsLength = data.docs.length - 1;
-      const lastPlantId = plantData[docsLength].flowerId;
-      setDocsLast(lastPlantId);
+      const data = await getDocs(q)
+      const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      await setPlants(plantData)
+      await setPlantsBackUp(plantData)
+      const docsLength = data.docs.length - 1
+      const lastPlantId = plantData[docsLength].flowerId
+      setDocsLast(lastPlantId)
     }
-    getPlants();
+    getPlants()
 
-    getFavorites();
-  }, []);
+    getFavorites()
+  }, [])
 
-  let userFavorites2 = [];
-  userFavorites.forEach((plant) => userFavorites2.push(plant.plantId));
+  let userFavorites2 = []
+  userFavorites.forEach((plant) => userFavorites2.push(plant.plantId))
 
   const removeFavorite = (thisPlantsId) => {
     let toBeDeletedData = userFavorites.filter(
       (x) => x.plantId === thisPlantsId
-    );
-    DeleteFavorite(toBeDeletedData, userId);
+    )
+    DeleteFavorite(toBeDeletedData, userId)
     let toBeNewFavorites = userFavorites.filter(
       (x) => x.plantId !== thisPlantsId
-    );
-    setUserFavorites(toBeNewFavorites);
-  };
+    )
+    setUserFavorites(toBeNewFavorites)
+  }
 
   // THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
   function checkedBoxType(event) {
     if (!document.getElementById(event).checked) {
       let tempFilterOption = filterTypeOptions.filter(
         (option) => option !== event
-      );
-      setfilterTypeOptions(tempFilterOption);
+      )
+      setfilterTypeOptions(tempFilterOption)
     } else {
-      let tempFilteredOption = filterTypeOptions;
-      tempFilteredOption.push(event);
-      setfilterTypeOptions(tempFilteredOption);
+      let tempFilteredOption = filterTypeOptions
+      tempFilteredOption.push(event)
+      setfilterTypeOptions(tempFilteredOption)
     }
   }
 
@@ -99,12 +104,12 @@ const AllPlants = (props) => {
     if (!document.getElementById(event).checked) {
       let tempFilterLifeOption = filterLifeOptions.filter(
         (option) => option !== event
-      );
-      setfilterLifeOptions(tempFilterLifeOption);
+      )
+      setfilterLifeOptions(tempFilterLifeOption)
     } else {
-      let tempFilteredLifeOption = filterLifeOptions;
-      tempFilteredLifeOption.push(event);
-      setfilterLifeOptions(tempFilteredLifeOption);
+      let tempFilteredLifeOption = filterLifeOptions
+      tempFilteredLifeOption.push(event)
+      setfilterLifeOptions(tempFilteredLifeOption)
     }
   }
 
@@ -113,28 +118,28 @@ const AllPlants = (props) => {
     if (!document.getElementById(event).checked) {
       let tempFilterLightOption = filterLightOptions.filter(
         (option) => option !== event
-      );
-      setfilterLightOptions(tempFilterLightOption);
+      )
+      setfilterLightOptions(tempFilterLightOption)
     } else {
-      let tempFilterLightOption = filterLightOptions;
-      tempFilterLightOption.push(event);
-      setfilterLightOptions(tempFilterLightOption);
+      let tempFilterLightOption = filterLightOptions
+      tempFilterLightOption.push(event)
+      setfilterLightOptions(tempFilterLightOption)
     }
   }
 
   function reset() {
     for (let i = 0; i < filterLifeOptions.length; i++) {
-      document.getElementById(filterLifeOptions[i]).checked = false;
+      document.getElementById(filterLifeOptions[i]).checked = false
     }
     for (let i = 0; i < filterLightOptions.length; i++) {
-      document.getElementById(filterLightOptions[i]).checked = false;
+      document.getElementById(filterLightOptions[i]).checked = false
     }
     for (let i = 0; i < filterTypeOptions.length; i++) {
-      document.getElementById(filterTypeOptions[i]).checked = false;
+      document.getElementById(filterTypeOptions[i]).checked = false
     }
-    setfilterLightOptions([]);
-    setfilterLifeOptions([]);
-    setfilterTypeOptions([]);
+    setfilterLightOptions([])
+    setfilterLifeOptions([])
+    setfilterTypeOptions([])
   }
 
   async function onSubmit(evt) {
@@ -143,7 +148,7 @@ const AllPlants = (props) => {
       filterLifeOptions.length === 0 &&
       filterLightOptions.length === 0
     ) {
-      setPlants(plantsBackUp);
+      setPlants(plantsBackUp)
     } else if (
       filterTypeOptions.length > 0 &&
       filterLifeOptions.length === 0 &&
@@ -151,8 +156,8 @@ const AllPlants = (props) => {
     ) {
       let newPlants = plantsBackUp.filter((plant) =>
         filterTypeOptions.includes(plant.type)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else if (
       filterTypeOptions.length === 0 &&
       filterLifeOptions.length > 0 &&
@@ -160,8 +165,8 @@ const AllPlants = (props) => {
     ) {
       let newPlants = plantsBackUp.filter((plant) =>
         filterLifeOptions.includes(plant.life)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else if (
       filterTypeOptions.length === 0 &&
       filterLifeOptions.length === 0 &&
@@ -169,8 +174,8 @@ const AllPlants = (props) => {
     ) {
       let newPlants = plantsBackUp.filter((plant) =>
         filterLightOptions.includes(plant.transplantTo)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else if (
       filterTypeOptions.length === 0 &&
       filterLifeOptions.length > 0 &&
@@ -180,8 +185,8 @@ const AllPlants = (props) => {
         (plant) =>
           filterLifeOptions.includes(plant.life) &&
           filterLightOptions.includes(plant.transplantTo)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else if (
       filterTypeOptions.length > 0 &&
       filterLifeOptions.length > 0 &&
@@ -191,8 +196,8 @@ const AllPlants = (props) => {
         (plant) =>
           filterTypeOptions.includes(plant.type) &&
           filterLifeOptions.includes(plant.life)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else if (
       filterTypeOptions.length > 0 &&
       filterLifeOptions.length === 0 &&
@@ -202,29 +207,29 @@ const AllPlants = (props) => {
         (plant) =>
           filterTypeOptions.includes(plant.type) &&
           filterLightOptions.includes(plant.transplantTo)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     } else {
       let newPlants = plantsBackUp.filter(
         (plant) =>
           filterTypeOptions.includes(plant.type) &&
           filterLifeOptions.includes(plant.life) &&
           filterLightOptions.includes(plant.transplantTo)
-      );
-      setPlants(newPlants);
+      )
+      setPlants(newPlants)
     }
   }
 
   function show(className) {
-    const editInputArea = document.querySelectorAll(`.${className}`);
-    const currentEditInputArea1 = editInputArea[0];
-    const currentEditInputArea2 = editInputArea[1];
-    const currentEditInputArea3 = editInputArea[2];
-    const currentEditInputArea4 = editInputArea[3];
-    currentEditInputArea1.classList.toggle("show");
-    currentEditInputArea2.classList.toggle("show");
-    currentEditInputArea3.classList.toggle("show");
-    currentEditInputArea4.classList.toggle("show");
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea1 = editInputArea[0]
+    const currentEditInputArea2 = editInputArea[1]
+    const currentEditInputArea3 = editInputArea[2]
+    const currentEditInputArea4 = editInputArea[3]
+    currentEditInputArea1.classList.toggle("show")
+    currentEditInputArea2.classList.toggle("show")
+    currentEditInputArea3.classList.toggle("show")
+    currentEditInputArea4.classList.toggle("show")
   }
 
   const plantTypes = [
@@ -237,9 +242,9 @@ const AllPlants = (props) => {
     "tree",
     "vege",
     "vine",
-  ];
-  const plantLife = ["a", "b", "p", "other"];
-  const transplantTo = ["fsun", "psun", "psha", "fsha"];
+  ]
+  const plantLife = ["a", "b", "p", "other"]
+  const transplantTo = ["fsun", "psun", "psha", "fsha"]
 
   return (
     <div
@@ -297,7 +302,7 @@ const AllPlants = (props) => {
               <button
                 className="all-plants-button"
                 onClick={(evt) => {
-                  onSubmit(evt);
+                  onSubmit(evt)
                 }}
               >
                 submit
@@ -305,7 +310,7 @@ const AllPlants = (props) => {
               <button
                 className="all-plants-button"
                 onClick={(evt) => {
-                  reset(evt);
+                  reset(evt)
                 }}
               >
                 clear
@@ -323,7 +328,7 @@ const AllPlants = (props) => {
                         {userFavorites2.includes(plant.id) ? (
                           <div
                             onClick={() => {
-                              removeFavorite(plant.id);
+                              removeFavorite(plant.id)
                             }}
                           >
                             <i className="fa fa-heart" aria-hidden="true"></i>
@@ -331,8 +336,8 @@ const AllPlants = (props) => {
                         ) : (
                           <div
                             onClick={() => {
-                              AddFavorite(plant.id, userId);
-                              getFavorites();
+                              AddFavorite(plant.id, userId)
+                              getFavorites()
                             }}
                           >
                             <i className="fa fa-heart-o" aria-hidden="true"></i>
@@ -372,7 +377,7 @@ const AllPlants = (props) => {
                         : "partial sun"}
                     </div>
                   </div>
-                );
+                )
               })
             ) : (
               <div>Sorry, no plant data available</div>
@@ -381,7 +386,7 @@ const AllPlants = (props) => {
           <div className="loadMoreButtonDiv">
             <button
               onClick={() => {
-                fetchMore();
+                fetchMore()
               }}
             >
               Load More Plants
@@ -390,8 +395,8 @@ const AllPlants = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 //     {(plants
 //       ? (plants.map((plant) => {
@@ -420,4 +425,4 @@ const AllPlants = (props) => {
 
 // }
 
-export default AllPlants;
+export default AllPlants

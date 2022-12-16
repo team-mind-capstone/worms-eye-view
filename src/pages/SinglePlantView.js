@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { useParams } from "react-router-dom";
-import { db } from "../database/firebase-config"; // STEP 1
-import AddFavorite from "../components/AddFavorite";
-import DeleteFavorite from "../components/DeleteFavorite";
-import { Link } from "react-router-dom";
-import background from "../components/background";
+import { useState, useEffect } from "react"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { useParams } from "react-router-dom"
+import { db } from "../database/firebase-config" // STEP 1
+import AddFavorite from "../components/AddFavorite"
+import DeleteFavorite from "../components/DeleteFavorite"
+import { Link } from "react-router-dom"
+import background from "../components/background"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -17,35 +17,41 @@ import background from "../components/background";
 // OUTPUT: the useState singlePlant is now a single plant object, as in the database.
  */
 const SinglePlantView = (props) => {
-  const [singlePlant, setSinglePlant] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [userFavorites, setUserFavorites] = useState([]);
-  const { plantId } = useParams(); // STEP 2
-  const { userId } = props;
-  const plantCollection = collection(db, "testPlants"); //STEP 3
-  const userFavoritesCollection = collection(db, "worms", userId, "favorites");
+  const [singlePlant, setSinglePlant] = useState([])
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [userFavorites, setUserFavorites] = useState([])
+  const { plantId } = useParams() // STEP 2
+  const { userId } = props
+
+  let userFavoritesCollection = {}
+
+  if (userId) {
+    userFavoritesCollection = collection(db, "worms", userId, "favorites")
+  }
+
+  const plantCollection = collection(db, "testPlants") //STEP 3
 
   async function getFavorites() {
-    const data = await getDocs(userFavoritesCollection);
-    const dataDocs = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    let userFavorites = [];
-    dataDocs.forEach((plant) => userFavorites.push(plant.plantId));
+    const data = await getDocs(userFavoritesCollection)
+    const dataDocs = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    let userFavorites = []
+    dataDocs.forEach((plant) => userFavorites.push(plant.plantId))
     if (userFavorites.includes(plantId)) {
-      setIsFavorite(true);
+      setIsFavorite(true)
     }
-    await setUserFavorites(dataDocs);
+    await setUserFavorites(dataDocs)
   }
 
   const removeFavorite = (thisPlantsId) => {
     let toBeDeletedData = userFavorites.filter(
       (x) => x.plantId === thisPlantsId
-    );
-    DeleteFavorite(toBeDeletedData, userId);
+    )
+    DeleteFavorite(toBeDeletedData, userId)
     let toBeNewFavorites = userFavorites.filter(
       (x) => x.plantId !== thisPlantsId
-    );
-    setUserFavorites(toBeNewFavorites);
-  };
+    )
+    setUserFavorites(toBeNewFavorites)
+  }
 
   // STEP 4
   // const fireStoreQuery = query(plantCollection, where("id", "==", plantId)) // this method is WRONG, it looks only IN the document. the id in the document is a number.
@@ -53,16 +59,16 @@ const SinglePlantView = (props) => {
   const fireStoreQuery = query(
     plantCollection,
     where("__name__", "==", plantId)
-  );
+  )
 
   useEffect(() => {
     async function getSinglePlant() {
-      let singlePlantData = await getDocs(fireStoreQuery); //STEP 5
-      setSinglePlant(singlePlantData.docs.map((doc) => ({ ...doc.data() }))); // STEP 6
+      let singlePlantData = await getDocs(fireStoreQuery) //STEP 5
+      setSinglePlant(singlePlantData.docs.map((doc) => ({ ...doc.data() }))) // STEP 6
     }
-    getSinglePlant();
-    getFavorites();
-  }, []);
+    getSinglePlant()
+    getFavorites()
+  }, [])
 
   return (
     <div
@@ -78,8 +84,8 @@ const SinglePlantView = (props) => {
                   {isFavorite ? (
                     <div
                       onClick={() => {
-                        setIsFavorite(false);
-                        removeFavorite(plantId);
+                        setIsFavorite(false)
+                        removeFavorite(plantId)
                       }}
                     >
                       <i className="fa fa-heart" aria-hidden="true"></i>
@@ -87,8 +93,8 @@ const SinglePlantView = (props) => {
                   ) : (
                     <div
                       onClick={() => {
-                        setIsFavorite(true);
-                        AddFavorite(plantId, userId);
+                        setIsFavorite(true)
+                        AddFavorite(plantId, userId)
                       }}
                     >
                       <i className="fa fa-heart-o" aria-hidden="true"></i>
@@ -156,6 +162,6 @@ const SinglePlantView = (props) => {
         </div>
       </div>
     </div>
-  );
-};
-export default SinglePlantView;
+  )
+}
+export default SinglePlantView
