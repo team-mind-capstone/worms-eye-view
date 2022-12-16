@@ -103,11 +103,11 @@ const PlantSuggestions = (props) => {
     const [month1, day1, year1] = dateStr.split("/")
 
     // date control
-    const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
+    // const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
     // const date = new Date(+year1, 0, 2) // ! WINTER JAN 2 - HOUSEPLANTS
     // const date = new Date(+year1, 2, 1)              // ! WINTER MAR 2 - SOWING SEEDS
     // const date = new Date(+year1, 3, 1)              // ! SPRING APR 1
-    // const date = new Date(+year1, 6, 1); // ! SUMMER JUL 1
+    const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
     // const date = new Date(+year1, 9, 1)              // ! FALL   OCT 1
 
     plantTimingObject.currentDate = date
